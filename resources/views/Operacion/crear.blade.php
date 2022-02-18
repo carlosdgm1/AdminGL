@@ -37,7 +37,8 @@
                             <h5>Notificaciones del residente</h5>
                             @foreach ($reporte as $item)
                                 <ul>
-                                    <li class="text-danger">{{$item->titulo}}: <span class="font-weight-bold">{{$item->razon}}</span></li>
+                                    <li class="text-danger">{{ $item->titulo }}: <span
+                                            class="font-weight-bold">{{ $item->razon }}</span></li>
                                 </ul>
                             @endforeach
                             {{-- CAMARAS -------------------------------- --}}
@@ -212,7 +213,7 @@
                                                 visita</label>
                                             <input readonly value="{{ $item->nombre }}" style="margin: 2px" required
                                                 type="text" class="form-control">
-                                            <input value="{{ $item->id}}"type="hidden" name="idr">
+                                            <input value="{{ $item->id }}" type="hidden" name="idr">
                                         </div>
                                     </div>
 
@@ -244,10 +245,10 @@
                             <br>
                             <center>
                                 <button class="btn btn-dark ml-1" data-bs-toggle="modal" data-bs-target="#modalPluma"
-                                    onclick="fetch('api/open')
-                                                        .then(response => response)
-                                                        .then(json => console.log(json))
-                                                        .catch(err => console.log(err))">ABRIR PLUMA</button>
+                                    onclick="fetch('/open')
+                                                            .then(response => response)
+                                                            .then(json => console.log(json))
+                                                            .catch(err => console.log(err))">ABRIR PLUMA</button>
                             </center>
 
 

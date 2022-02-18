@@ -96,30 +96,30 @@ class OperacionController extends Controller
         return redirect()->route('index-residente');
     }
 
-    // public function openGate()
-    // {
-    //     $open = Arduino::where('estatus', 1)->first();
-    //     $configure = new TTYConfigure();
-    //     $configure->setOption("9600");
-    //     $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
-    //     $serialPort->open("COM4");
-    //     sleep(2);
-    //     $serialPort->write($open->abrir);
-    //     $serialPort->close();
-    //     return response()->json('abierto');
-    // }
-    // public function closeGate()
-    // {
-    //     $close = Arduino::where('estatus', 1)->first();
-    //     $configure = new TTYConfigure();
-    //     $configure->setOption("9600");
-    //     $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
-    //     $serialPort->open("COM4");
-    //     sleep(2);
-    //     $serialPort->write($close->cerrar);
-    //     $serialPort->close();
-    //     return response()->json($close->cerrar);
-    // }
+    public function openGate()
+    {
+        //$open = Arduino::where('estatus', 1)->first();
+        $configure = new TTYConfigure();
+        $configure->setOption("9600");
+        $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
+        $serialPort->open("COM4");
+        sleep(2);
+        $serialPort->write('s');
+        $serialPort->close();
+        return response()->json('abierto');
+    }
+    public function closeGate()
+    {
+        $close = Arduino::where('estatus', 1)->first();
+        $configure = new TTYConfigure();
+        $configure->setOption("9600");
+        $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
+        $serialPort->open("COM4");
+        sleep(2);
+        $serialPort->write($close->cerrar);
+        $serialPort->close();
+        return response()->json($close->cerrar);
+    }
 
     public function store(Request $request)
     {

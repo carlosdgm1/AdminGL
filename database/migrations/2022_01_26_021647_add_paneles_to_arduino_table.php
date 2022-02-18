@@ -17,7 +17,7 @@ class AddPanelesToArduinoTable extends Migration
             $table->integer('panel');
             $table->integer('puerto');
             $table->string('nonc');
-            $table->string('nombre')->nullable;
+            $table->string('nombre')->nullable();
             $table->dropColumn('estatus');
         });
     }

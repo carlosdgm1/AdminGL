@@ -108,3 +108,12 @@ Route::get('/operacion/notificacion', [NotificacionController::class, 'index'])-
 Route::get('/operacion/notificacion/{id}', [NotificacionController::class, 'index2'])->middleware(['auth'])->name('index-notificacion2');
 Route::post('/operacion/notificacion/crear', [NotificacionController::class, 'crear'])->middleware(['auth'])->name('crear-notificacion');
 Route::delete('/operacion/notificacion/eliminar/{id}', [NotificacionController::class, 'eliminar'])->middleware(['auth'])->name('eliminar-notificacion');
+
+Route::PUT('Busqueda/residentes/payment/{id}', [BusquedaController::class, 'payment'])->name('payment');
+Route::get('/info', [ConfiguracionController::class, 'info'])->name('compinfo');
+
+Route::get('/open', [OperacionController::class, 'openGate'])->middleware(['auth']);
+
+Route::get('/close', [OperacionController::class, 'closeGate'])->middleware(['auth']);
+
+Route::post('/operacion', [OperacionController::class, 'store'])->middleware(['auth']);
