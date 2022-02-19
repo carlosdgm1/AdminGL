@@ -235,7 +235,7 @@
                             </form>
 
                             <br>
-                            <select name="arduino" class="form-select" id="">
+                            <select name="arduino" class="form-select" id="puerto">
                                 @foreach ($arduino as $port)
                                     @if ($port->nombre !== null)
                                         <option value="{{ $port->id }}">{{ $port->nombre }}</option>
@@ -245,10 +245,7 @@
                             <br>
                             <center>
                                 <button class="btn btn-dark ml-1" data-bs-toggle="modal" data-bs-target="#modalPluma"
-                                    onclick="fetch('/open')
-                                                            .then(response => response)
-                                                            .then(json => console.log(json))
-                                                            .catch(err => console.log(err))">ABRIR PLUMA</button>
+                                    onclick="open1()">ABRIR PLUMA</button>
                             </center>
 
 

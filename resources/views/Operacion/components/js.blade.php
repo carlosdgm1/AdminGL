@@ -145,9 +145,10 @@
         video4.setAttribute("style", "filter: brightness(" + val + "%);");
     }
 
-    function open() {
+    function open1() {
         console.log('abrir')
-        fetch('/open')
+        const p = document.getElementById('puerto').value;
+        fetch('/open/' + p)
             .then(response => response)
             .then(json => console.log(json))
             .catch(err => console.log(err));

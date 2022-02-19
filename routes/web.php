@@ -112,7 +112,7 @@ Route::delete('/operacion/notificacion/eliminar/{id}', [NotificacionController::
 Route::PUT('Busqueda/residentes/payment/{id}', [BusquedaController::class, 'payment'])->name('payment');
 Route::get('/info', [ConfiguracionController::class, 'info'])->name('compinfo');
 
-Route::get('/open', [OperacionController::class, 'openGate'])->middleware(['auth']);
+Route::get('/open/{id}', [OperacionController::class, 'openGate'])->middleware(['auth'])->name('open');
 
 Route::get('/close', [OperacionController::class, 'closeGate'])->middleware(['auth']);
 

@@ -96,17 +96,15 @@ class OperacionController extends Controller
         return redirect()->route('index-residente');
     }
 
-    public function openGate()
+    public function openGate($id)
     {
-        //$open = Arduino::where('estatus', 1)->first();
-        $configure = new TTYConfigure();
-        $configure->setOption("9600");
-        $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
-        $serialPort->open("COM4");
+        $open = Arduino::find($id);
+        $serialPort = new SerialPort(new SeparatorParser("\n"), new TTYConfigure());
+        $serialPort->open("COM1");
         sleep(2);
-        $serialPort->write('s');
+        $serialPort->write($open->abrir);
         $serialPort->close();
-        return response()->json('abierto');
+        return response()->json($open->abrir);
     }
     public function closeGate()
     {
