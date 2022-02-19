@@ -117,3 +117,6 @@ Route::get('/open/{id}', [OperacionController::class, 'openGate'])->middleware([
 Route::get('/close', [OperacionController::class, 'closeGate'])->middleware(['auth']);
 
 Route::post('/operacion', [OperacionController::class, 'store'])->middleware(['auth']);
+
+// eportar
+Route::get('users/export/', [UsersController::class, 'export']);

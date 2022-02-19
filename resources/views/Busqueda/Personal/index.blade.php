@@ -8,7 +8,7 @@
 
 @section('content_header')
     <h1 style="color: green"><i class="fas fa-search"></i> Buscar <strong>personal</strong></h1>
-    
+
 @stop
 
 @section('content')
@@ -21,6 +21,7 @@
                         <div class="card-header">
                             <strong>Listado del personal</strong>
                         </div>
+                        
                         <div class="card-body">
 
                             @if (session('info'))
@@ -41,8 +42,9 @@
                                 <br>
                             @endif
 
+                            <a class="btn btn-primary" href="{{ route('exportP') }}">Exportar Excel</a><br><br>
                             <table id="example" class="table table-secondary table-striped table-bordered table-responsive"
-                                class="display">
+                                striped hoverable with-buttons>
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -122,16 +124,33 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
+<script src="https://adminlte.io/themes/v3/dist/js/demo.js"></script>
 
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
             responsive: true,
             autoWidth: false,
-             dom: 'Bfrtip',
+            dom: 'Bfrtip',
             buttons: [
-                "copy", "csv", "excel", "pdf", "print", "colvis"
+                'excel'
             ],
 
             "language": {
@@ -146,6 +165,23 @@
     });
 </script>
 
+<script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
 
 
 {{-- <script>

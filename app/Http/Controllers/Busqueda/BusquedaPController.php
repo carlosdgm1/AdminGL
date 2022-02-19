@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Busqueda;
 
+use App\Exports\PersonalExport;
 use App\Http\Controllers\Controller;
 use App\Models\Personal;
 use App\Models\ServicioP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Invoice;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
 class BusquedaPController extends Controller
 {
@@ -17,6 +22,12 @@ class BusquedaPController extends Controller
         $servicio = ServicioP::all()->where('fraccionamiento', $idf);
         return view('Busqueda.Personal.index', compact('BP', 'servicio'));
 
+    }
+
+
+    public function export() 
+    {
+        return Excel::download(new PersonalExport, 'users.xlsx');
     }
 
     public function update(Request $request,  $id)
