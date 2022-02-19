@@ -99,12 +99,10 @@ class OperacionController extends Controller
     public function openGate($id)
     {
         $open = Arduino::find($id);
-        $serialPort = new SerialPort(new SeparatorParser("\n"), new TTYConfigure());
-        $serialPort->open("COM1");
-        sleep(2);
-        $serialPort->write($open->abrir);
-        $serialPort->close();
-        return response()->json($open->abrir);
+        $fd = dio_open('com1:', O_RDWR);
+        $sent = dio_write($fd, $open->abrir);
+        dio_close($fd);
+        return response()->json($sent);
     }
     public function closeGate()
     {
