@@ -149,13 +149,18 @@
                                 </div> --}}
                             </div>
                             <br>
+
+                            <select name="arduino" class="form-select" id="puerto">
+                                @foreach ($arduino as $port)
+                                    @if ($port->nombre !== null)
+                                        <option value="{{ $port->id }}">{{ $port->nombre }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                             <div class="d-flex justify-content-center">
 
                                 <button type="button" class="btn btn-dark ml-1" data-toggle="modal" id="pluma"
-                                    data-target="#exampleModal" onclick="fetch('api/open')
-                                                        .then(response => response)
-                                                        .then(json => console.log(json))
-                                                        .catch(err => console.log(err))" disabled>
+                                    data-target="#exampleModal" onclick='open1()' disabled>
                                     Abrir pluma
                                 </button>
 
@@ -167,6 +172,7 @@
 
                                 {{-- @include('Operacion.components.modalCerrarPluma') --}}
                                 @include('Operacion.components.cerrarpluma')
+                                @include('Operacion.components.js')
                             </div>
                         </div>
                     </div>
