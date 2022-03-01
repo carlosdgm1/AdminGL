@@ -54,6 +54,12 @@ return [
             'url' => env('APP_URL') . '/storage/placa',
             'visibility' => 'public',
         ],
+        'salida' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/salida'),
+            'url' => env('APP_URL') . '/storage/salida',
+            'visibility' => 'public',
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

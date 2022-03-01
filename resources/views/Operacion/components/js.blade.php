@@ -152,13 +152,43 @@
             .then(response => response)
             .then(json => console.log(json))
             .catch(err => console.log(err));
+
+        $("#exampleModal").modal()
+
     }
 
-    function close() {
-        fetch('/close')
+    function close1() {
+        const p = document.getElementById('puerto').value;
+        fetch('/close/' + p)
             .then(response => response)
             .then(json => console.log(json))
             .catch(err => console.log(err));
+        $('#exampleModal').modal('hide');
+
+    }
+
+
+    function exitBtn(id) {
+        document.getElementById('hiddenid').value = id;
+    }
+
+
+    function postexit() {
+        var dataURL4 = canvas4.toDataURL("");
+        const id = document.getElementById('hiddenid').value
+        let data = new FormData();
+        data.append('salida_foto', dataURL4);
+        data.append('id', id);
+        fetch('/operacion/salida', {
+                method: "POST",
+                body: data,
+            })
+            .then(response => response)
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+        location.reload();
+
+
     }
 
     function post() {
@@ -193,7 +223,7 @@
             .then(response => response)
             .then(json => console.log(json))
             .catch(err => console.log(err));
-            location.reload();
+        location.reload();
 
 
     }

@@ -32,46 +32,11 @@
                     <div class="card">
 
 
-                        <h5 class="card-header">Visitas abeirtas</h5>
+                        <h5 class="card-header">Visitas abiertas</h5>
                         <div class="card-body">
                             <h5 class="modal-title" id="exampleModalLabel">Visitas pendientes
                                 de salida
                             </h5>
-                            <p class="fs-2">Visitas abiertas</p>
-                            <table id="example" class="table table-sm table-secondary table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Folio</th>
-                                        <th>Nombre</th>
-                                        <th>Calle</th>
-                                        <th>Placa</th>
-                                        <th>Residente</th>
-                                        <th>Salida</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($BV as $itemR)
-                                        <tr>
-                                            <td>{{ $itemR->id }}</td>
-                                            <td>{{ $itemR->nombre }}</td>
-                                            <td>{{ $itemR->ine }}</td>
-                                            <td>{{ $itemR->placa }}</td>
-
-                                            @foreach ($idr as $item)
-                                                @if ($itemR->idr == $item->id)
-                                                    <td>{{ $item->nombre }}</td>
-                                                @endif
-                                            @endforeach
-
-                                            <td>
-                                                <a href="#salida" onclick="document.getElementById('snap4').disabled=false;"
-                                                    class="btn btn-warning">Registrar
-                                                    salida</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
 
                             <div style="margin-top: 20px">
 
@@ -121,6 +86,43 @@
                                     </div>
                                 </div>
 
+                                <p class="fs-2">Visitas abiertas</p>
+                                <table id="example" class="table table-sm table-secondary table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Folio</th>
+                                            <th>Nombre</th>
+                                            <th>Calle</th>
+                                            <th>Placa</th>
+                                            <th>Residente</th>
+                                            <th>Salida</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($BV as $itemR)
+                                            <tr>
+                                                <td>{{ $itemR->id }}</td>
+                                                <td>{{ $itemR->nombre }}</td>
+                                                <td>{{ $itemR->ine }}</td>
+                                                <td>{{ $itemR->placa }}</td>
+
+                                                @foreach ($idr as $item)
+                                                    @if ($itemR->idr == $item->id)
+                                                        <td>{{ $item->nombre }}</td>
+                                                    @endif
+                                                @endforeach
+
+                                                <td>
+                                                    <button onclick="exitBtn({{ $itemR->id }})"
+                                                        class="btn btn-warning">Registrar
+                                                        salida</button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                                <input type="hidden" name="" id="hiddenid">
 
                                 {{-- <div class="card" id="salida">
 
@@ -149,7 +151,10 @@
                                 </div> --}}
                             </div>
                             <br>
-
+                            <div>
+                                <input type="submit" onclick="postexit()" value="GUARDAR DATOS" name="guardar"
+                                    class="btn btn-primary">
+                            </div>
                             <select name="arduino" class="form-select" id="puerto">
                                 @foreach ($arduino as $port)
                                     @if ($port->nombre !== null)

@@ -9,11 +9,8 @@
             </div>
             <div class="modal-body" style="display:flex;
             justify-content: center;">
-                <a class="btn btn-lg btn-danger ml-1" onclick="fetch('api/close')
-                .then(response => response)
-                .then(json => console.log(json))
-                .catch(err => console.log(err))" data-bs-dismiss="modal">cerrar pluma</a>
-                
+                <a class="btn btn-lg btn-danger ml-1" onclick="close1()" data-bs-dismiss="modal">cerrar pluma</a>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

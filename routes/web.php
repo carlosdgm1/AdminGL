@@ -140,9 +140,10 @@ Route::get('/info', [ConfiguracionController::class, 'info'])->name('compinfo');
 
 Route::get('/open/{id}', [OperacionController::class, 'openGate'])->middleware(['auth'])->name('open');
 
-Route::get('/close', [OperacionController::class, 'closeGate'])->middleware(['auth']);
+Route::get('/close/{id}', [OperacionController::class, 'closeGate'])->middleware(['auth']);
 
 Route::post('/operacion', [OperacionController::class, 'store'])->middleware(['auth']);
+Route::post('/operacion/salida', [OperacionController::class, 'storeSalida'])->middleware(['auth']);
 
 // eportar
 Route::get('personal/export/', [BusquedaPController::class, 'export'])->name('exportP');

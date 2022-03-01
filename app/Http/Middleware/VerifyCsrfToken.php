@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/updateArduino',
-        '/operacion'
+        '/operacion',
+        '/operacion/salida'
     ];
 }

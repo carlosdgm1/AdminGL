@@ -243,8 +243,7 @@
                                 {{-- <button type="button" class="btn btn-dark ml-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     onclick="open1()">ABRIR PLUMA</button> --}}
 
-                                <button type="button" class="btn btn-dark ml-1" data-toggle="modal" id="pluma"
-                                    data-target="#exampleModal" onclick='open1()'>
+                                <button type="button" class="btn btn-dark ml-1" onclick='open1()'>
                                     ABRIR PLUMA
                                 </button>
 
