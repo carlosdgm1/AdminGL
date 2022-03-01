@@ -135,104 +135,99 @@
                             {{-- FORMULARIO DE CREACION -------------------------------- --}}
                             <br>
 
-                            <form method="POST" class="formulario_guardar" action="{{ route('crear-visitante') }}">
-                                @csrf
-                                <div class="container">
+                            <div class="container">
 
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Nombre completo</label>
-                                        <input value="{{ old('nombre') }}"
-                                            onkeyup="javascript:this.value=this.value.toUpperCase();" style="margin: 2px"
-                                            required placeholder="Nombre completo" name="nombre" type="text"
-                                            class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                                    </div>
-
-
-                                    <div class="row align-items-start">
-
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlInput1"
-                                                    class="form-label">Telefono</label>
-                                                <input value="{{ old('telefono') }}"
-                                                    onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                                    style="margin: 2px" required placeholder="Telefono" name="telefono"
-                                                    type="number" class="form-control" id="basic-url"
-                                                    aria-describedby="basic-addon3">
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            @foreach ($idr as $item)
-                                                <label for="exampleFormControlInput1" class="form-label">Calle de
-                                                    residente</label>
-                                                <input readonly value="{{ $item->direccion }}"
-                                                    onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                                    style="margin: 2px" required placeholder="INE" name="ine" type="text"
-                                                    class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
                                             @endforeach
-                                        </div>
-
+                                        </ul>
                                     </div>
+                                @endif
 
-                                    <div class="row align-items-start">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Nombre completo</label>
+                                    <input value="{{ old('nombre') }}"
+                                        onkeyup="javascript:this.value=this.value.toUpperCase();" style="margin: 2px"
+                                        required placeholder="Nombre completo" name="nombre" type="text"
+                                        class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
 
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">Placa</label>
-                                                <input value="{{ old('placa') }}"
-                                                    onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                                    style="margin: 2px" required placeholder="Placa" name="placa"
-                                                    type="text" class="form-control" id="basic-url"
-                                                    aria-describedby="basic-addon3">
-                                            </div>
-                                        </div>
 
-                                        <div class="col">
-                                            <label for="exampleFormControlInput1" class="form-label">Fechas</label>
-                                            <input readonly value="<?php echo date('Y-m-d'); ?>" style="margin: 2px"
-                                                placeholder="Fecha" name="fecha" type="text" class="form-control"
-                                                id="basic-url" aria-describedby="basic-addon3">
-                                        </div>
-
-                                    </div>
+                                <div class="row align-items-start">
 
                                     <div class="col">
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Residente al que
-                                                visita</label>
-                                            <input readonly value="{{ $item->nombre }}" style="margin: 2px" required
-                                                type="text" class="form-control">
-                                            <input value="{{ $item->id }}" type="hidden" name="idr">
+                                            <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+                                            <input value="{{ old('telefono') }}"
+                                                onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                style="margin: 2px" required placeholder="Telefono" name="telefono"
+                                                type="number" class="form-control" id="basic-url"
+                                                aria-describedby="basic-addon3">
                                         </div>
                                     </div>
 
                                     <div class="col">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Motivo</label>
-
-                                            <textarea required name="motivo" class="form-control" id="floatingTextarea2"
-                                                style="height: 100px">{{ old('motivo') }}</textarea>
-
-                                        </div>
+                                        @foreach ($idr as $item)
+                                            <label for="exampleFormControlInput1" class="form-label">Calle de
+                                                residente</label>
+                                            <input readonly value="{{ $item->direccion }}"
+                                                onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                style="margin: 2px" required placeholder="INE" name="ine" type="text"
+                                                class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                        @endforeach
                                     </div>
-
-                                    <center><input type="submit" onclick="post()" value="GUARDAR DATOS" name="guardar"
-                                            class="btn btn-primary">
-                                    </center>
 
                                 </div>
-                            </form>
+
+                                <div class="row align-items-start">
+
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Placa</label>
+                                            <input value="{{ old('placa') }}"
+                                                onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                style="margin: 2px" required placeholder="Placa" name="placa" type="text"
+                                                class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1" class="form-label">Fechas</label>
+                                        <input readonly value="<?php echo date('Y-m-d'); ?>" style="margin: 2px" placeholder="Fecha"
+                                            name="fecha" type="text" class="form-control" id="basic-url"
+                                            aria-describedby="basic-addon3">
+                                    </div>
+
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Residente al que
+                                            visita</label>
+                                        <input readonly value="{{ $item->nombre }}" style="margin: 2px" required
+                                            type="text" class="form-control">
+                                        <input value="{{ $item->id }}" type="hidden" name="idr">
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Motivo</label>
+
+                                        <textarea required name="motivo" class="form-control" id="floatingTextarea2"
+                                            style="height: 100px">{{ old('motivo') }}</textarea>
+
+                                    </div>
+                                </div>
+
+                                <center><input type="submit" onclick="post()" value="GUARDAR DATOS" name="guardar"
+                                        class="btn btn-primary">
+                                </center>
+
+                            </div>
 
                             <br>
                             <select name="arduino" class="form-select" id="puerto">
