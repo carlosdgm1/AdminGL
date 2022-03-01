@@ -118,7 +118,7 @@
                                                         trabaja</label>
                                                     <select value="{{old ('idr')}}" name="idr" class="form-control"
                                                         id="exampleFormControlSelect1">
-                                                        <option value="Fraccionamiento">Residentes activos ..</option>
+                                                        <option value="FRACCIONAMIENTO">Residentes activos ..</option>
                                                         @foreach ($idr as $r)
                                                             <option value="{{ $r->id }}">{{ $r->nombre }}</option>
                                                         @endforeach

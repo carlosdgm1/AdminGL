@@ -40,8 +40,8 @@
                                 </div>
                                 <br>
                             @endif
-
-                            <table id="example" class="table table-secondary table-striped table-bordered "
+                            <a class="btn btn-primary" href="{{ route('exportR') }}">Exportar Excel</a><br><br>
+                            <table id="example" class="table table-secondary table-sm table-striped table-bordered"
                                 class="display">
                                 <thead>
                                     <tr>
@@ -56,14 +56,31 @@
                                 <tbody>
                                     @foreach ($BR as $p)
                                         <tr>
-                                            <th scope="row">{{ $p->nombre }}</th>
+                                            <td scope="row">{{ $p->nombre }}</td>
                                             <td>{{ $p->telefono }}</td>
                                             <td>{{ $p->direccion }}</td>
                                             <td>{{ $p->tipo }}</td>
                                             <td>{{ $p->correo }}</td>
 
                                             <td>
-                                                <div class="dropdown">
+
+                                                <div class="row align-items-start">
+                                                    <div class="col">
+                                                        <button class="btn btn-primary " type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal-{{ $p->id }}"><i class="fas fa-edit    "></i></button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form style="margin: 0px;" action="{{ route('deleteR', $p->id) }}" method="post">
+                                                            @csrf @method('delete')
+                                                            <button class="btn btn-danger  mr-1" type="submit"> <i
+                                                                    class="fa fa-trash"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+
+                                                {{-- <div class="dropdown">
                                                     <button class="btn btn-secondary dropdown-toggle" type="button"
                                                         id="dropdownMenuButton" data-toggle="dropdown"
                                                         aria-expanded="false">
@@ -80,7 +97,7 @@
                                                                     class="fa fa-trash text-danger"></i> Eliminar</button>
                                                         </form>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </td>
                                         </tr>
                                         @include('Busqueda.Residentes.components.editar')

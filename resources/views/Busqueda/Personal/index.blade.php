@@ -21,7 +21,7 @@
                         <div class="card-header">
                             <strong>Listado del personal</strong>
                         </div>
-                        
+
                         <div class="card-body">
 
                             @if (session('info'))
@@ -43,73 +43,81 @@
                             @endif
 
                             <a class="btn btn-primary" href="{{ route('exportP') }}">Exportar Excel</a><br><br>
-                            <table id="example" class="table table-secondary table-striped table-bordered table-responsive"
-                                striped hoverable with-buttons>
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Telefono</th>
-                                        <th>Direccion</th>
-                                        <th>Tipo</th>
-                                        <th>Ine</th>
-                                        <th>Servicio</th>
-                                        <th>Trabaja para</th>
-                                        <th>Descripcion</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($BP as $p)
+
+                            <div class="table-responsive">
+                                <table id="example" class="table table-secondary table-sm table-striped table-bordered"
+                                    striped hoverable with-buttons>
+                                    <thead>
                                         <tr>
-                                            <th scope="row">{{ $p->nombre }}</th>
-                                            <td>{{ $p->telefono }}</td>
-                                            <td>{{ $p->direccion }}</td>
-                                            <td>{{ $p->tipo }}</td>
-                                            <td>{{ $p->ine }}</td>
-                                            <td>{{ $p->servicio }}</td>
-
-                                            @if ($p->idr == null)
-                                                <td>Fraccionamiento</td>
-                                            @endif
-
-                                            @if ($p->idr != null)
-                                                <td>{{ $p->idr }}</td>
-                                            @endif
-
-                                            @if ($p->nota == null)
-                                                <td>Sin nota</td>
-                                            @endif
-
-                                            @if ($p->nota != null)
-                                                <td>{{ $p->nota }}</td>
-                                            @endif
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                        Opciones
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <button type="button" class="dropdown-item" data-toggle="modal"
-                                                            data-target="#exampleModal-{{ $p->id }}">
-                                                            <i class="fas fa-edit    "></i> Editar
-                                                        </button>
-                                                        <form action="{{ route('deleteP', $p->id) }}" method="post">
-                                                            @csrf @method('delete')
-                                                            <button class="dropdown-item" type="submit"><i
-                                                                    class="fa fa-trash text-danger"></i> Eliminar</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <th>Nombre</th>
+                                            <th>Telefono</th>
+                                            <th>Direccion</th>
+                                            <th>Tipo</th>
+                                            <th>Servicio</th>
+                                            <th>Trabaja para</th>
+                                            <th>Acciones</th>
                                         </tr>
-                                        @include('Busqueda.Personal.components.editar')
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($BP as $p)
+                                            <tr>
+                                                <td>{{ $p->nombre }}</td>
+                                                <td>{{ $p->telefono }}</td>
+                                                <td>{{ $p->direccion }}</td>
+                                                <td>{{ $p->tipo }}</td>
+                                                <td>{{ $p->servicio }}</td>
 
+                                                @if ($p->idr == null)
+                                                    <td>FRACCIONAMIENTO</td>
+                                                @endif
+
+                                                @if ($p->idr != null)
+                                                    <td>{{ $p->idr }}</td>
+                                                @endif
+
+                                                <td>
+
+                                                    <div class="row align-items-start">
+                                                        <div class="col">
+                                                            <button class="btn btn-primary " type="button"
+                                                                data-toggle="modal"
+                                                                data-target="#exampleModal-{{ $p->id }}"><i class="fas fa-edit    "></i></button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <form style="margin: 0px;" action="{{ route('deleteP', $p->id) }}" method="post">
+                                                                @csrf @method('delete')
+                                                                <button class="btn btn-danger  mr-1" type="submit"> <i
+                                                                        class="fa fa-trash"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton" data-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            Opciones
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <button type="button" class="dropdown-item" data-toggle="modal"
+                                                                data-target="#exampleModal-{{ $p->id }}">
+                                                                <i class="fas fa-edit    "></i> Editar
+                                                            </button>
+                                                            <form action="{{ route('deleteP', $p->id) }}" method="post">
+                                                                @csrf @method('delete')
+                                                                <button class="dropdown-item" type="submit"><i
+                                                                        class="fa fa-trash text-danger"></i>
+                                                                    Eliminar</button>
+                                                            </form>
+                                                        </div>
+                                                    </div> --}}
+                                                </td>
+                                            </tr>
+                                            @include('Busqueda.Personal.components.editar')
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,23 +133,6 @@
 @stop
 
 <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
-
-<script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
-<script src="https://adminlte.io/themes/v3/dist/js/demo.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -166,22 +157,24 @@
 </script>
 
 <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
-  </script>
+</script>
 
 
 {{-- <script>

@@ -7,8 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1 style="color: rgb(0, 174, 174);">Operacion <strong>Residente al que visita</strong></h1>
-
+    <h1 style="color: orange"><i class="fas fa-user-plus"></i> Editar <strong>personal</strong></h1>
 @stop
 
 @section('content')
@@ -19,7 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>Listado de residentes</strong>
+                            <strong>Listado de personal</strong>
                         </div>
                         <div class="card-body">
 
@@ -46,17 +45,20 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Direccion</th>
+                                        <th>Serviocio</th>
+                                        <th>Trabaja para</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($idr as $p)
+                                    @foreach ($idp as $p)
                                         <tr>
                                             <td>{{ $p->nombre }}</td>
-                                            <td>{{ $p->direccion }}</td>
+                                            <td>{{ $p->servicio }}</td>
+                                            <td>{{ $p->idr }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-primary" href="{{route('index-visitante', $p->id)}}">Seleccionar</a>
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="{{ route('editarP', $p->id) }}">Seleccionar</a>
                                             </td>
                                         </tr>
                                     @endforeach

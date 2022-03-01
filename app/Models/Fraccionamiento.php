@@ -10,7 +10,9 @@ class Fraccionamiento extends Model
     use HasFactory;
     
     protected $filltable =[
-        'nombre'
+        'nombre',
+        'direccion',
+        'rfc',
     ];
 
     protected $table = 'fraccionamientos';

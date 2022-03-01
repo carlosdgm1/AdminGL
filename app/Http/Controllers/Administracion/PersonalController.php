@@ -78,4 +78,52 @@ class PersonalController extends Controller
 
         return redirect()->back()->with('info', 'Perfil de personal creado corrrectamente');
     }
+
+    // Editar personal
+
+    public function listP()
+    {
+        $idf = Auth::user()->fraccionamiento;
+        $idp = Personal::all()->where('fraccionamiento', $idf);
+        $idr = Residentes::all()->where('fraccionamiento', $idf);
+        return view('Administracion.Personal.personal', compact('idp', 'idr'));
+    }
+
+    public function editarP($id)
+    {
+
+        $idf = Auth::user()->fraccionamiento;
+        $idp = Personal::all()->where('fraccionamiento', $idf)->where('id', $id);
+        $servicio = ServicioP::all()->where('fraccionamiento', $idf);
+        $idr = Residentes::all()->where('fraccionamiento', $idf);
+        return view('Administracion.Personal.editar', compact('idp', 'servicio', 'idr'));
+    }
+
+    public function updateP(Request $request,  $id)
+    {
+        $idf = Auth::user()->fraccionamiento;
+        $BP = Personal::find($id);
+
+        $request->validate([
+            'nombre' => ['required', 'string', 'max:255'],
+            'telefono' => ['required', 'digits:10'],
+            'direccion' => ['required', 'string', 'max:255'],
+            'tipo' => ['required', 'string', 'max:255'],
+            'ine' => ['required', 'string', 'max:255'],
+            'servicio' => ['required', 'string', 'max:255'],
+        ]);
+
+        $BP->nombre = request('nombre');
+        $BP->telefono = request('telefono');
+        $BP->direccion = request('direccion');
+        $BP->tipo = request('tipo');
+        $BP->ine = request('ine');
+        $BP->servicio = request('servicio');
+        $BP->nota = request('nota');
+
+        $BP->update();
+
+        return redirect()->back()->with('info', 'Perfil de personal actualizado corrrectamente');
+    }
+    
 }

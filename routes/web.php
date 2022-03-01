@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\PersonalExport;
 use App\Http\Controllers\Administracion\PersonalController;
 use App\Http\Controllers\Administracion\ResidenteController;
 use App\Http\Controllers\Busqueda\BusquedaPController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\Incidencias\NotificacionController;
 use App\Http\Controllers\Incidencias\ReporteController;
 use App\Http\Controllers\OperacionController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/administracion/personal', [PersonalController::class, 'index'])->name('personal');
 // craer personal
 Route::post('/administracion/personal/craer', [PersonalController::class, 'createP'])->name('createP');
+// editar personal
+Route::get('/administracion/personal/editar', [PersonalController::class, 'listP'])->name('listP');
+Route::get('/administracion/personal/editar/{id}', [PersonalController::class, 'editarP'])->name('editarP');
+Route::put('/administracion/personal/update/{id}', [PersonalController::class, 'updateP'])->name('updateP');
+
 // craer servicio
 Route::post('/administracion/personal/servicio', [PersonalController::class, 'crearSP'])->name('crearSP');
 // eliminar servicio
@@ -50,7 +57,10 @@ Route::post('/administracion/residentes/craer', [ResidenteController::class, 'cr
 Route::post('/administracion/residentes/servicio', [ResidenteController::class, 'crearTR'])->name('crearTR');
 // eliminar tipo
 Route::delete('/administracion/residentes/servicio/eliminar/{id}', [ResidenteController::class, 'eliminarTR'])->name('eliminarTR');
-
+// editar personal
+Route::get('/administracion/residentes/editar', [ResidenteController::class, 'listR'])->name('listR');
+Route::get('/administracion/residentes/editar/{id}', [ResidenteController::class, 'editarR'])->name('editarR');
+Route::put('/administracion/residentes/update/{id}', [ResidenteController::class, 'updateR'])->name('updateRA');
 
 // RUTAS BUSQUEDA ----------------------------------------------------------------
 
@@ -89,6 +99,20 @@ Route::post('/updateArduino', [ConfiguracionController::class, 'updateArduino'])
 Route::put('/addpanel/{id}', [ConfiguracionController::class, 'addpanel'])->name('addpanel');
 Route::put('/deletepanel/{id}', [ConfiguracionController::class, 'deletepanel'])->name('deletepanel');
 
+// usuarios
+Route::get('/configuracion/usuarios', [UsersController::class, 'index'])->name('usuarios');
+Route::put('/usuarios/editar/update/rol/{partner}', [App\Http\Controllers\UsersController::class, 'updateRol'])->name('role.update');
+Route::post('/configuracion/usuarios/craer', [UsersController::class, 'crear'])->name('usuariosC');
+// Route::put('/configuracion/usuarios/editar/{id}', [UsersController::class, 'editar'])->name('usuariosD');
+
+Route::delete('/configuracion/usuarios/eliminar/{id}', [UsersController::class, 'eliminar'])->name('usuariosE');
+
+// general
+Route::get('/configuracion/general', [ConfiguracionController::class, 'indexGeneral'])->name('indexGeneral');
+Route::put('/usuarios/editar/correo/{partner}', [ConfiguracionController::class, 'editarcorreo'])->name('editarcorreo');
+Route::put('/usuarios/editar/fraccionamiento/{partner}', [ConfiguracionController::class, 'editarfracc'])->name('editarfracc');
+
+
 // RUTAS OPERACION ----------------------------------------------------------------
 // vista principal
 Route::get('/operacion/crear/{id}', [OperacionController::class, 'index'])->middleware(['auth'])->name('index-visitante');
@@ -103,6 +127,8 @@ Route::put('/operacion/Actualizar_estatus/{id}', [OperacionController::class, 'e
 Route::get('/operacion/reportes', [ReporteController::class, 'index'])->middleware(['auth'])->name('index-reportes');
 Route::post('/operacion/reportes/crear', [ReporteController::class, 'crear'])->middleware(['auth'])->name('crear-reportes');
 Route::delete('/operacion/reportes/eliminar/{id}', [ReporteController::class, 'eliminar'])->middleware(['auth'])->name('eliminar-reportes');
+Route::put('/operacion/reportes/editar/{id}', [ReporteController::class, 'edit'])->middleware(['auth'])->name('edit-reportes');
+
 // notificaciones
 Route::get('/operacion/notificacion', [NotificacionController::class, 'index'])->middleware(['auth'])->name('index-notificacion');
 Route::get('/operacion/notificacion/{id}', [NotificacionController::class, 'index2'])->middleware(['auth'])->name('index-notificacion2');
@@ -119,4 +145,6 @@ Route::get('/close', [OperacionController::class, 'closeGate'])->middleware(['au
 Route::post('/operacion', [OperacionController::class, 'store'])->middleware(['auth']);
 
 // eportar
-Route::get('users/export/', [UsersController::class, 'export']);
+Route::get('personal/export/', [BusquedaPController::class, 'export'])->name('exportP');
+Route::get('residentes/export/', [BusquedaRController::class, 'export'])->name('exportR');
+Route::get('visitantes/export/', [VisitantesController::class, 'export'])->name('exportV');

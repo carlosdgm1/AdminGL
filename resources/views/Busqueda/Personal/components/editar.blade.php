@@ -22,40 +22,39 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Nombre completo <span
                                 class="text-danger">*</span></label>
-                        <input value="{{  $p->nombre }}" required name="nombre" type="text" class="form-control"
+                        <input value="{{ $p->nombre }}" required name="nombre" type="text" class="form-control"
                             onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Telefono <span class="text-danger">*</span></label>
-                        <input value="{{  $p->telefono }}" required name="telefono" type="number"
+                        <input value="{{ $p->telefono }}" required name="telefono" type="number"
                             class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Direccion <span class="text-danger">*</span></label>
-                        <input value="{{  $p->direccion }}" required name="direccion" type="text"
+                        <input value="{{ $p->direccion }}" required name="direccion" type="text"
                             class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Tipo de empleado <span
                                 class="text-danger">*</span></label>
-                        <input value="{{  $p->tipo }}" required name="tipo" type="text" class="form-control"
+                        <input value="{{ $p->tipo }}" required name="tipo" type="text" class="form-control"
                             onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Ine <span class="text-danger">*</span></label>
-                        <input value="{{  $p->ine }}" required name="ine" type="text" class="form-control"
+                        <input value="{{ $p->ine }}" required name="ine" type="text" class="form-control"
                             onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Servicio <span class="text-danger">*</span></label>
-                        <select  required name="servicio" class="form-control"
-                            id="exampleFormControlSelect1">
-                            <option value="{{  $p->servicio }}">{{  $p->servicio }}</option>
+                        <select required name="servicio" class="form-control" id="exampleFormControlSelect1">
+                            <option value="{{ $p->servicio }}">{{ $p->servicio }}</option>
                             @foreach ($servicio as $s)
                                 <option value="{{ $s->servicio }}">{{ $s->servicio }}
                                 </option>
@@ -63,13 +62,20 @@
                         </select>
                     </div>
 
-                
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Descripcion de
+                            actividades</label>
+                        <textarea name="nota" class="form-control" id="exampleFormControlTextarea1"
+                            rows="3">{{ $p->nota }}</textarea>
+                    </div>
+
+
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary">Guardar</button>
-            </form>
+                </form>
             </div>
         </div>
     </div>

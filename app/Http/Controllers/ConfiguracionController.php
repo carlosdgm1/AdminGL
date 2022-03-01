@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Arduino;
 use App\Models\Camaras;
+use App\Models\Correo;
 use App\Models\Fraccionamiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,5 +102,37 @@ class ConfiguracionController extends Controller
         return back();
     }
 
+    // INFORMACION GENERAL
+
+    public function indexGeneral(){
+
+        $idf = Auth::user()->fraccionamiento;
+
+         $correo = Correo::all()->where('fraccionamiento', $idf);
+         $frac = Fraccionamiento::all()->where('id', $idf);
+
+         return view('Configuracion.general', compact('correo', 'frac'));
+
+    }
+    public function editarcorreo(Request $request, $id){
+
+        $correo = Correo::find($id);
+
+        $correo->correo = $request->correo;
+        $correo->update();
+
+        return redirect()->back();
+    }
+
+    public function editarfracc(Request $request, $id){
+
+        $frac = Fraccionamiento::find($id);
+
+        $frac->direccion = $request->direccion;
+        $frac->rfc = $request->rfc;
+        $frac->update();
+
+        return redirect()->back();
+    }
     
 }

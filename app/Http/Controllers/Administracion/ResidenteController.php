@@ -71,4 +71,48 @@ class ResidenteController extends Controller
 
         return redirect()->back()->with('info', 'Perfil de residente creado corrrectamente');
     }
+
+    public function listR(){
+
+        $idf = Auth::user()->fraccionamiento;
+        $idr = Residentes::all()->where('fraccionamiento', $idf);
+        $tipo = TipoR::all()->where('fraccionamiento', $idf);
+        return view('Administracion.Residente.residentes', compact('idr', 'tipo'));
+
+    }
+
+    public function editarR($id){
+
+        $idf = Auth::user()->fraccionamiento;
+        $idr = Residentes::all()->where('fraccionamiento', $idf)->where('id', $id);
+        $tipo = TipoR::all()->where('fraccionamiento', $idf);
+        return view('Administracion.Residente.edit', compact('idr', 'tipo'));
+
+    }
+
+    public function updateR($id, Request $request)
+    {
+
+        $BR = Residentes::find($id);
+
+        $request->validate([
+            'nombre' => ['required', 'string', 'max:255'],
+            'telefono' => ['required', 'digits:10'],
+            'direccion' => ['required', 'string', 'max:255'],
+            'tipo' => ['required', 'string', 'max:255'],
+            'correo' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+        $BR->nombre = request('nombre');
+        $BR->telefono = request('telefono');
+        $BR->direccion = request('direccion');
+        $BR->correo = request('correo');
+        $BR->tipo = request('tipo');
+
+        $BR->update();
+        return redirect()->back()->with('info', 'Residente editado');
+    }
+
+
+    
 }

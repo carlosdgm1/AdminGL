@@ -27,7 +27,7 @@ class BusquedaPController extends Controller
 
     public function export() 
     {
-        return Excel::download(new PersonalExport, 'users.xlsx');
+        return Excel::download(new PersonalExport, 'personal.xlsx');
     }
 
     public function update(Request $request,  $id)
@@ -50,6 +50,7 @@ class BusquedaPController extends Controller
         $BP->tipo = request('tipo');
         $BP->ine = request('ine');
         $BP->servicio = request('servicio');
+        $BP->nota = request('nota');
 
         $BP->update();
 

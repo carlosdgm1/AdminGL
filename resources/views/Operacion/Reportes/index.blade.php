@@ -29,7 +29,9 @@
                             @include('Operacion.Reportes.components.crear')
                             <br><br>
 
-                            <table id="example" class="table table-secondary table-striped table-bordered "
+                          
+                            
+                            <table id="example" class="table table-sm table-secondary table-striped table-bordered "
                                 class="display">
                                 <thead>
                                     <tr>
@@ -46,12 +48,27 @@
                                             <td>{{ $p->titulo }}</td>
                                             <td>{{ $p->razon }}</td>
                                             <td>
-                                                <form method="POST" action="{{ route('eliminar-reportes', $p->id) }}">
-                                                    @csrf @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                </form>
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                            data-target="#exampleModal-{{ $p->id }}">
+                                                            <i class="fas fa-edit    "></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form style="margin: 0px" method="POST"
+                                                            action="{{ route('eliminar-reportes', $p->id) }}">
+                                                            @csrf @method('delete')
+                                                            <button type="submit" class="btn btn-danger"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
                                             </td>
                                         </tr>
+                                        @include('Operacion.Reportes.components.edit')
                                     @endforeach
                                 </tbody>
                             </table>

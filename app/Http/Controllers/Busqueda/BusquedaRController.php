@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Busqueda;
 
+use App\Exports\ResidnetesExport;
 use App\Http\Controllers\Controller;
 use App\Models\Residentes;
 use App\Models\TipoR;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class BusquedaRController extends Controller
 {
@@ -16,6 +19,11 @@ class BusquedaRController extends Controller
         $tipo = TipoR::all()->where('fraccionamiento', $idf);
         $BR = Residentes::all()->where('fraccionamiento', $idf);
         return view('Busqueda.Residentes.index',  compact('BR', 'tipo'));
+    }
+
+    public function export() 
+    {
+        return Excel::download(new ResidnetesExport, 'residentes.xlsx');
     }
 
     public function updateR($id, Request $request)

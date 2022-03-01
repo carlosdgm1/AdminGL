@@ -8,7 +8,7 @@
 
 @section('content_header')
     <h1 style="color: green"><i class="fas fa-search"></i> Buscar <strong>visitantes</strong></h1>
-    
+
 @stop
 
 @section('content')
@@ -40,29 +40,57 @@
                                 </div>
                                 <br>
                             @endif
-
-                            <table id="example" class="table table-secondary table-striped table-bordered "
-                                class="display">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Telefono</th>
-                                        <th>Calle</th>
-                                        <th>Placa</th>
-                                        <th>Motivo</th>
-                                        <th>Detalle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($BV as $p)
+                            <a class="btn btn-primary" href="{{ route('exportV') }}">Exportar Excel</a><br><br>
+                            <div class="table-responsive">
+                                <table id="example" class="table table-secondary table-sm table-striped table-bordered"
+                                    class="display">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $p->nombre }}</td>
-                                            <td>{{ $p->telefono }}</td>
-                                            <td>{{ $p->ine }}</td>
-                                            <td>{{ $p->placa }}</td>
-                                            <td>{{ $p->motivo }}</td>
-                                            <td>
-                                                <div class="dropdown">
+                                            <th>Nombre</th>
+                                            <th>Telefono</th>
+                                            <th>Calle</th>
+                                            <th>Placa</th>
+                                            <th>Residente</th>
+                                            <th>Motivo</th>
+                                            <th>Detalle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($BV as $p)
+                                            <tr>
+                                                <td>{{ $p->nombre }}</td>
+                                                <td>{{ $p->telefono }}</td>
+                                                <td>{{ $p->ine }}</td>
+                                                <td>{{ $p->placa }}</td>
+                                                @foreach ($R as $item)
+                                                    @if ($item->id == $p->idr)
+                                                        <td>{{ $item->nombre }}</td>
+                                                    @endif
+                                                @endforeach
+                                                <td>{{ $p->motivo }}</td>
+                                                <td>
+
+                                                    <div class="row align-items-start">
+                                                        <div class="col">
+                                                            <button class="btn btn-primary " type="button"
+                                                                data-toggle="modal"
+                                                                data-target="#exampleModal-{{ $p->id }}"> <i
+                                                                    class="fa fa-info" aria-hidden="true"></i></button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <form style="margin: 0px;"
+                                                                action="{{ route('deleteV', $p->id) }}" method="post">
+                                                                @csrf @method('delete')
+                                                                <button class="btn btn-danger  mr-1" type="submit">
+                                                                    <i class="fa fa-trash"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    {{-- <div class="dropdown">
                                                     <button class="btn btn-secondary dropdown-toggle" type="button"
                                                         id="dropdownMenuButton" data-toggle="dropdown"
                                                         aria-expanded="false">
@@ -79,14 +107,14 @@
                                                                     class="fa fa-trash text-danger"></i> Eliminar</button>
                                                         </form>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @include('Busqueda.Visitantes.components.editar')
-                                    @endforeach
-                                </tbody>
-                            </table>
-
+                                                </div> --}}
+                                                </td>
+                                            </tr>
+                                            @include('Busqueda.Visitantes.components.editar')
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,7 +136,7 @@
         $('#example').DataTable({
             responsive: true,
             autoWidth: false,
-             dom: 'Bfrtip',
+            dom: 'Bfrtip',
             buttons: [
                 "copy", "csv", "excel", "pdf", "print", "colvis"
             ],

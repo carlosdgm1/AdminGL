@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1 style="color: rgb(0, 174, 174);">Operacion <strong>Residente al que visita</strong></h1>
+    <h1 style="color: orange"><i class="fas fa-user-plus"></i> Editar <strong>residente</strong></h1>
 
 @stop
 
@@ -56,7 +56,8 @@
                                             <td>{{ $p->nombre }}</td>
                                             <td>{{ $p->direccion }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-primary" href="{{route('index-visitante', $p->id)}}">Seleccionar</a>
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="{{ route('editarR', $p->id) }}">Seleccionar</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFraccionamientosTable extends Migration
+class CreateCorreoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateFraccionamientosTable extends Migration
      */
     public function up()
     {
-
-        Schema::create('fraccionamientos', function (Blueprint $table) {
+        Schema::create('correo', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('direccion')->nullable();
-            $table->string('rfc')->nullable();
+            $table->string('correo');
+            $table->string('fraccionamiento');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateFraccionamientosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fraccionamientos');
+        Schema::dropIfExists('correo');
     }
 }

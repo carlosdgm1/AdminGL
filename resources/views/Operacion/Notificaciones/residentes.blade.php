@@ -41,7 +41,7 @@
                                 <br>
                             @endif
 
-                            <table id="example" class="table table-secondary table-striped table-bordered "
+                            <table id="example" class="table table-sm table-secondary table-striped table-bordered "
                                 class="display">
                                 <thead>
                                     <tr>
@@ -53,10 +53,10 @@
                                 <tbody>
                                     @foreach ($idr as $p)
                                         <tr>
-                                            <th scope="row">{{ $p->nombre }}</th>
+                                            <td >{{ $p->nombre }}</td>
                                             <td>{{ $p->direccion }}</td>
                                             <td>
-                                                <a class="btn btn-primary" href="{{route('index-notificacion2', $p->id)}}">Seleccionar</a>
+                                                <a class="btn btn-sm btn-primary" href="{{route('index-notificacion2', $p->id)}}">Seleccionar</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Good</b>Lock',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -265,6 +265,16 @@ return [
                     'icon_color' => 'orange',
                     'route'  => 'residente',
                 ],
+                [
+                    'text' => 'Editar personal',
+                    'icon_color' => 'orange',
+                    'route'  => 'listP',
+                ],
+                [
+                    'text' => 'Editar residente',
+                    'icon_color' => 'orange',
+                    'route'  => 'listR',
+                ],
             ],
         ],
 
@@ -322,12 +332,12 @@ return [
                     'icon_color' => 'cyan',
                     'submenu'  => [
                         [
-                            'text' => 'Nuevo Reporte',
+                            'text' => 'Reporte',
                             'icon_color' => 'cyan',
                             'route'  => 'index-reportes',
                         ],
                         [
-                            'text' => 'Nueva Notificacion',
+                            'text' => 'Notificacion',
                             'icon_color' => 'cyan',
                             'route'  => 'index-notificacion',
                         ],
@@ -348,7 +358,7 @@ return [
                 [
                     'text' => 'Usuarios',
                     'icon_color' => 'yellow',
-                    'url'  => '#',
+                    'route'  => 'usuarios',
                 ],
                 [
                     'text' => 'Dispositivos',
@@ -363,7 +373,7 @@ return [
                 [
                     'text' => 'Informacion general',
                     'icon_color' => 'yellow',
-                    'url'  => '#',
+                    'route'  => 'indexGeneral',
                 ],
             ],
         ],

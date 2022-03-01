@@ -38,7 +38,7 @@
                                 de salida
                             </h5>
                             <p class="fs-2">Visitas abiertas</p>
-                            <table id="example" class="table table-secondary table-striped table-bordered">
+                            <table id="example" class="table table-sm table-secondary table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Folio</th>
@@ -172,7 +172,6 @@
 
                                 {{-- @include('Operacion.components.modalCerrarPluma') --}}
                                 @include('Operacion.components.cerrarpluma')
-                                @include('Operacion.components.js')
                             </div>
                         </div>
                     </div>
