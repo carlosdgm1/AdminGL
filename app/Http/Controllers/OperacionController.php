@@ -99,24 +99,22 @@ class OperacionController extends Controller
     public function openGate($id)
     {
         $open = Arduino::find($id);
-        $fd = dio_open('com8:', O_RDWR);
+        $fd = dio_open('com12:', O_RDWR);
         sleep(2);
-        $wr = dio_write($fd, 'a');
+        $wr = dio_write($fd, $open->abrir);
         sleep(2);
         dio_close($fd);
         return response()->json($wr);
     }
-    public function closeGate()
+    public function closeGate($id)
     {
-        $close = Arduino::where('estatus', 1)->first();
-        $configure = new TTYConfigure();
-        $configure->setOption("9600");
-        $serialPort = new SerialPort(new SeparatorParser("\n"), $configure);
-        $serialPort->open("COM4");
+        $close = Arduino::find($id);
+        $fd = dio_open('com12:', O_RDWR);
         sleep(2);
-        $serialPort->write($close->cerrar);
-        $serialPort->close();
-        return response()->json($close->cerrar);
+        $wr = dio_write($fd, $open->cerrar);
+        sleep(2);
+        dio_close($fd);
+        return response()->json($wr);
     }
 
     public function store(Request $request)
@@ -151,6 +149,7 @@ class OperacionController extends Controller
         $request->placa_foto = $imageName;
         $visita = new Visita();
         $visita->saveVisita($request);
+        return redirect()->back();
     }
 
 
