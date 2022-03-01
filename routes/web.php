@@ -120,7 +120,7 @@ Route::get('/operacion/residentes', [OperacionController::class, 'indexR'])->mid
 Route::get('/operacion/cerrar', [OperacionController::class, 'indexC'])->middleware(['auth'])->name('cerrar-visitante');
 Route::get('/operacion/buscar_visitantes', [OperacionController::class, 'indexV'])->middleware(['auth'])->name('index-operacionR');
 // crear visitante
-Route::post('/operacion/Nueva_Visita', [OperacionController::class, 'createV'])->middleware(['auth'])->name('crear-visitante');
+Route::post('/operacion/Nueva_Visita', [OperacionController::class, 'store'])->middleware(['auth'])->name('crear-visitante');
 // cambair estatus de visita
 Route::put('/operacion/Actualizar_estatus/{id}', [OperacionController::class, 'estatus'])->middleware(['auth'])->name('estatusV');
 // reportes

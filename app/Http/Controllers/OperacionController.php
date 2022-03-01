@@ -122,31 +122,31 @@ class OperacionController extends Controller
     public function store(Request $request)
     {
         $image_64 = $request->ine_foto; //your base64 encoded data
-        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
+        // $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
         $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
         $image = str_replace($replace, '', $image_64);
         $image = str_replace(' ', '+', $image);
-        $imageName = Str::random(10) . '.' . $extension;
+        $imageName = Str::random(10) . '.png';
         Storage::disk('ine')->put($imageName, base64_decode($image));
         $request->ine_foto = $imageName;
 
         $image_64 = $request->cara_foto; //your base64 encoded data
-        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
+        // $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
         $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
         // find substring fro replace here eg: data:image/png;base64,
         $image = str_replace($replace, '', $image_64);
         $image = str_replace(' ', '+', $image);
-        $imageName = Str::random(10) . '.' . $extension;
+        $imageName = Str::random(10) . '.png';
         Storage::disk('cara')->put($imageName, base64_decode($image));
         $request->cara_foto = $imageName;
 
         $image_64 = $request->placa_foto; //your base64 encoded data
-        $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
+        //$extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
         $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
         // find substring fro replace here eg: data:image/png;base64,
         $image = str_replace($replace, '', $image_64);
         $image = str_replace(' ', '+', $image);
-        $imageName = Str::random(10) . '.' . $extension;
+        $imageName = Str::random(10) . '.png';
         Storage::disk('placa')->put($imageName, base64_decode($image));
         $request->placa_foto = $imageName;
         $visita = new Visita();
