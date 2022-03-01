@@ -55,11 +55,33 @@
                         onkeyup="javascript:this.value=this.value.toUpperCase();">{{ $p->motivo }}</textarea>
                 </div>
 
+                <center>
+                    
+                    <h4 class="fs-3">Imagenes guardadas</h4>
+                    <h5 class="fs-5">Placas</h5>
+                    <div class="text-center">
+                        <img src="{{ asset('storage/ine/' . $p->ine_foto) }}" class="rounded" width="300px"
+                            height="300px">
+                    </div>
+                    <br>
+                    <h5 class="fs-5">Placas</h5>
+                    <div class="text-center">
+                        <img src="{{ asset('storage/placa/' . $p->placa_foto) }}" class="rounded" width="300px"
+                            height="300px">
+                    </div>
+                    <br>
+                    <h5 class="fs-5">Cara</h5>
+                    <div class="text-center">
+                        <img src="{{ asset('storage/cara/' . $p->cara_foto) }}" class="rounded" width="300px"
+                            height="300px">
+                    </div>
+
+
+                </center>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-
             </div>
         </div>
     </div>

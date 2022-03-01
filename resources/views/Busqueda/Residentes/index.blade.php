@@ -77,6 +77,11 @@
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
                                                     </div>
+                                                    <div class="col">
+                                                        <button class="btn btn-primary " type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#Carro-{{ $p->id }}"><i class="fas fa-car"></i></button>
+                                                    </div>
                                                 </div>
 
 
@@ -100,6 +105,7 @@
                                                 </div> --}}
                                             </td>
                                         </tr>
+                                        @include('Busqueda.Residentes.components.carro')
                                         @include('Busqueda.Residentes.components.editar')
                                     @endforeach
                                 </tbody>

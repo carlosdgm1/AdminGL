@@ -63,19 +63,10 @@
                                             <td>{{ $p->placa }}</td>
                                             <td>{{ $p->motivo }}</td>
                                             <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                        Opciones
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <button type="button" class="dropdown-item" data-toggle="modal"
-                                                            data-target="#exampleModal-{{ $p->id }}">
-                                                            <i class="fa fa-info" aria-hidden="true"></i> Detalle
-                                                        </button>
-                                                    </div>
-                                                </div>
+
+                                                <button class="btn btn-primary " type="button" data-toggle="modal"
+                                                    data-target="#exampleModal-{{ $p->id }}"> <i
+                                                        class="fa fa-info" aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
                                         @include('Operacion.Visitantes.components.editar')

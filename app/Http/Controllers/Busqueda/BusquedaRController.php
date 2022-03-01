@@ -6,6 +6,7 @@ use App\Exports\ResidnetesExport;
 use App\Http\Controllers\Controller;
 use App\Models\Residentes;
 use App\Models\TipoR;
+use App\Models\Vehiculos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -18,7 +19,8 @@ class BusquedaRController extends Controller
         $idf = Auth::user()->fraccionamiento;
         $tipo = TipoR::all()->where('fraccionamiento', $idf);
         $BR = Residentes::all()->where('fraccionamiento', $idf);
-        return view('Busqueda.Residentes.index',  compact('BR', 'tipo'));
+        $vehiculo = Vehiculos::all();
+        return view('Busqueda.Residentes.index',  compact('BR', 'tipo', 'vehiculo'));
     }
 
     public function export() 
@@ -55,4 +57,21 @@ class BusquedaRController extends Controller
         $BR->delete();
         return redirect()->back();
     }
+
+    // Vehiculos
+
+    public function crearVehiculo(Request $request){
+
+        Vehiculos::create([
+
+            'placa' => $request->placa,
+            'tarjeta' => $request->tarjeta,
+            'idr' => $request->idr,
+
+        ]);
+
+        return redirect()->back();
+
+    } 
+    
 }
