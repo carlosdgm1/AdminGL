@@ -165,6 +165,8 @@
             .catch(err => console.log(err));
         $('#exampleModal').modal('hide');
 
+        location.reload();
+
     }
 
 
@@ -186,7 +188,6 @@
             .then(response => response)
             .then(json => console.log(json))
             .catch(err => console.log(err));
-        location.reload();
 
 
     }
