@@ -35,10 +35,29 @@ return [
             'root' => storage_path('app'),
         ],
 
+
+        'ine' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/ine'),
+            'url' => env('APP_URL') . '/storage/ine',
+            'visibility' => 'public',
+        ],
+        'cara' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/cara'),
+            'url' => env('APP_URL') . '/storage/cara',
+            'visibility' => 'public',
+        ],
+        'placa' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/placa'),
+            'url' => env('APP_URL') . '/storage/placa',
+            'visibility' => 'public',
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
