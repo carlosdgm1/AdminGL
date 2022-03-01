@@ -149,7 +149,7 @@ class OperacionController extends Controller
         $request->placa_foto = $imageName;
         $visita = new Visita();
         $visita->saveVisita($request);
-        return route('index-residente');
+        return redirect()->route('index-residente');
     }
 
 
