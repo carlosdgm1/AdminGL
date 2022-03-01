@@ -217,7 +217,8 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Motivo</label>
 
-                                        <textarea required name="motivo" class="form-control" id="floatingTextarea2"
+                                        <textarea onkeyup="javascript:this.value=this.value.toUpperCase();" required
+                                            name="motivo" class="form-control" id="floatingTextarea2"
                                             style="height: 100px">{{ old('motivo') }}</textarea>
 
                                     </div>
@@ -239,8 +240,15 @@
                             </select>
                             <br>
                             <center>
-                                <button class="btn btn-dark ml-1" data-bs-toggle="modal" data-bs-target="#modalPluma"
-                                    onclick="open1()">ABRIR PLUMA</button>
+                                {{-- <button type="button" class="btn btn-dark ml-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    onclick="open1()">ABRIR PLUMA</button> --}}
+
+                                <button type="button" class="btn btn-dark ml-1" data-toggle="modal" id="pluma"
+                                    data-target="#exampleModal" onclick='open1()'>
+                                    ABRIR PLUMA
+                                </button>
+
+                                @include('Operacion.components.cerrarpluma')
                             </center>
 
 

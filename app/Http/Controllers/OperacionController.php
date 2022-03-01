@@ -72,7 +72,7 @@ class OperacionController extends Controller
     public function openGate($id)
     {
         $open = Arduino::find($id);
-        $fd = dio_open('com12:', O_RDWR);
+        $fd = dio_open('com5:', O_RDWR);
         sleep(2);
         $wr = dio_write($fd, $open->abrir);
         sleep(2);
