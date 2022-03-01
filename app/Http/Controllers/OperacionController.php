@@ -138,7 +138,9 @@ class OperacionController extends Controller
         $request->salida_foto = $imageName;
         $visita = Visita::find($request->id);
         $visita->salida = $request->salida_foto;
+        $visita->estatus = ('cerrada');
         $visita->save();
+        return response()->json($visita);
     }
 
     public function estatus($id)
