@@ -68,33 +68,6 @@ class OperacionController extends Controller
         return view('Operacion.cerrar', compact('idr', 'BV', 'cam', 'arduino'));
     }
 
-    public function createV(HttpRequest $request)
-    {
-
-        $idf = Auth::user()->fraccionamiento;
-
-        $request->validate([
-            'nombre' => ['required', 'string', 'max:255'],
-            'telefono' => ['required', 'digits:10'],
-            'ine' => ['required', 'string', 'max:255'],
-            'motivo' => ['required', 'string', 'max:255'],
-            'placa' => ['required', 'string', 'max:255'],
-        ]);
-
-        $CV = new Visita();
-        $CV->nombre = request('nombre');
-        $CV->telefono = request('telefono');
-        $CV->ine = request('ine');
-        $CV->motivo = request('motivo');
-        $CV->placa = request('placa');
-        $CV->fecha = request('fecha');
-        $CV->idr = request('idr');
-        $CV->estatus = 'abierta';
-        $CV->fraccionamiento = $idf;
-
-        $CV->save();
-        return redirect()->route('index-residente');
-    }
 
     public function openGate($id)
     {
