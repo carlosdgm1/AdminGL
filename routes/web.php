@@ -154,3 +154,6 @@ Route::post('/operacion/salida', [OperacionController::class, 'storeSalida'])->m
 Route::get('personal/export/', [BusquedaPController::class, 'export'])->name('exportP');
 Route::get('residentes/export/', [BusquedaRController::class, 'export'])->name('exportR');
 Route::get('visitantes/export/', [VisitantesController::class, 'export'])->name('exportV');
+
+// Notificaciones
+Route::get('administracion/notificaciones', [ResidenteController::class, 'indexNoti'])->name('indexNoti');

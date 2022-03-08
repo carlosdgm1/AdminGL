@@ -275,6 +275,11 @@ return [
                     'icon_color' => 'orange',
                     'route'  => 'listR',
                 ],
+                [
+                    'text' => 'Notificaciones residentes',
+                    'icon_color' => 'orange',
+                    'route'  => 'indexNoti',
+                ],
             ],
         ],
 

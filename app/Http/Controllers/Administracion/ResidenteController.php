@@ -72,22 +72,22 @@ class ResidenteController extends Controller
         return redirect()->back()->with('info', 'Perfil de residente creado corrrectamente');
     }
 
-    public function listR(){
+    public function listR()
+    {
 
         $idf = Auth::user()->fraccionamiento;
         $idr = Residentes::all()->where('fraccionamiento', $idf);
         $tipo = TipoR::all()->where('fraccionamiento', $idf);
         return view('Administracion.Residente.residentes', compact('idr', 'tipo'));
-
     }
 
-    public function editarR($id){
+    public function editarR($id)
+    {
 
         $idf = Auth::user()->fraccionamiento;
         $idr = Residentes::all()->where('fraccionamiento', $idf)->where('id', $id);
         $tipo = TipoR::all()->where('fraccionamiento', $idf);
         return view('Administracion.Residente.edit', compact('idr', 'tipo'));
-
     }
 
     public function updateR($id, Request $request)
@@ -114,5 +114,16 @@ class ResidenteController extends Controller
     }
 
 
-    
+    // Notificaiones
+
+    public function indexNoti()
+    {
+        $idf = Auth::user()->fraccionamiento;
+        $residentes = Residentes::all()->where('fraccionamiento', $idf);
+        return view('Administracion.Notificaiones.index', compact('residentes'));
+
+    }
+    public function notificacion()
+    {
+    }
 }
