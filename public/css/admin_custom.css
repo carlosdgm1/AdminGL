@@ -1,0 +1,8 @@
+.checkbox-custom {
+    width: 1em;
+    height: 1em;
+    border-radius: 0.25em;
+    margin: auto;
+    appearance: none;
+    border: 1px solid rgba(0, 0, 0);
+}

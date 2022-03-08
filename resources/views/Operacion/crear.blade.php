@@ -122,13 +122,35 @@
 
                             <div class="card-group">
                                 <div class="card">
-                                    <canvas id="canvas" width="640" height="480"></canvas>
+                                    <div class="row">
+                                        <canvas id="canvas" width="640" height="480"></canvas>
+                                    </div>
+                                    <div class="row" style="
+                                            display: flex;
+                                            justify-content: center;">
+                                        <input type="checkbox" class="form-check-input" id="IN">
+
+                                    </div>
                                 </div>
                                 <div class="card">
-                                    <canvas id="canvas2" width="640" height="480"></canvas>
+                                    <div class="row">
+                                        <canvas id="canvas2" width="640" height="480"></canvas>
+                                    </div>
+                                    <div class="row" style="
+                                            display: flex;
+                                            justify-content: center;">
+                                        <input type="checkbox" class="form-check-input" id="PL">
+                                    </div>
                                 </div>
                                 <div class="card">
-                                    <canvas id="canvas3" width="640" height="480"></canvas>
+                                    <div class="row">
+                                        <canvas id="canvas3" width="640" height="480"></canvas>
+                                    </div>
+                                    <div class="row" style="
+                                                display: flex;
+                                                justify-content: center;">
+                                        <input type="checkbox" class="form-check-input" id="FC">
+                                    </div>
                                 </div>
                             </div>
 

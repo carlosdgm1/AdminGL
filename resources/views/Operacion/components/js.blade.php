@@ -200,6 +200,9 @@
         const placa = document.getElementsByName('placa')[0].value;
         const motivo = document.getElementsByName('motivo')[0].value;
         const idr = document.getElementsByName('idr')[0].value;
+        const IN = document.getElementById('IN').checked;
+        const FC = document.getElementById('FC').checked;
+        const PL = document.getElementById('PL').checked;
 
         var dataURL = canvas.toDataURL("");
         var dataURL2 = canvas2.toDataURL("");
@@ -215,6 +218,9 @@
         data.append('ine_foto', dataURL);
         data.append('placa_foto', dataURL2);
         data.append('cara_foto', dataURL3);
+        data.append('IN', IN);
+        data.append('PL', PL);
+        data.append('FC', FC);
 
 
         fetch('/operacion', {

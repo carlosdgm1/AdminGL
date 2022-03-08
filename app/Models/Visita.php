@@ -29,13 +29,15 @@ class Visita extends Model
 
     public function saveVisita(Request $request)
     {
-
         $request->validate([
             'nombre' => ['required', 'string', 'max:255'],
             'telefono' => ['required', 'digits:10'],
             'ine' => ['required', 'string', 'max:255'],
             'motivo' => ['required', 'string', 'max:255'],
             'placa' => ['required', 'string', 'max:255'],
+            'IN' => ['boolean'],
+            'FC' => ['boolean'],
+            'PL' => ['boolean']
         ]);
         $all = [
             'nombre' => $request->nombre,

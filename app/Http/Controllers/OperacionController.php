@@ -92,6 +92,7 @@ class OperacionController extends Controller
 
     public function store(Request $request)
     {
+        ddd($request);
         $image_64 = $request->ine_foto; //your base64 encoded data
         // $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
         $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
