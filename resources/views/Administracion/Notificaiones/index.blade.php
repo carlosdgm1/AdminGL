@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="">
+                    <form method="post" action="{{ route('notificacion') }}">
                         @csrf
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Mensaje a residentes:</label>

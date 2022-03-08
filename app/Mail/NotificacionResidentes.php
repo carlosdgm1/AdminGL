@@ -29,6 +29,7 @@ class NotificacionResidentes extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        // return $this->view('view.name');
+        return $this->from('notificaciones.goodlock@gmail.com', 'Notificacion del Fraccionamiento')->subject('Notificacion del Fraccionamiento')->view('mail.notificacionR');
     }
 }

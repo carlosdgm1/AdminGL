@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Administracion;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotificacionResidentes;
 use App\Models\Residentes;
 use App\Models\TipoR;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 
 class ResidenteController extends Controller
@@ -123,7 +125,21 @@ class ResidenteController extends Controller
         return view('Administracion.Notificaiones.index', compact('residentes'));
 
     }
-    public function notificacion()
+    public function notificacion(Request $request)
     {
+        $p = Residentes::all();
+        // dd($p);
+        // dd($request->mensaje);
+        foreach ($p as $mail){
+                
+            $usercorreo = [$mail->correo];
+            $correo = new NotificacionResidentes($request->all());
+            Mail::to($usercorreo)->send($correo);
+            // return redirect()->back();
+
+        }
+       
+        return redirect()->back();
+        
     }
 }
