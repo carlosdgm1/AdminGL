@@ -157,3 +157,5 @@ Route::get('visitantes/export/', [VisitantesController::class, 'export'])->name(
 
 // Notificaciones
 Route::get('administracion/notificaciones', [ResidenteController::class, 'indexNoti'])->name('indexNoti');
+
+Route::get('/info', [ConfiguracionController::class, 'info'])->name('compinfo');

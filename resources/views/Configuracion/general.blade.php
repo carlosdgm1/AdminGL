@@ -51,32 +51,32 @@
                                         <h5 class="card-title"><strong>INFORMACION FRACCIONAMIENTO</strong></h5>
                                         <p class="card-text">
 
-                                        @foreach ($frac as $f)
-                                            <form action="{{ route('editarfracc', $f->id) }}" method="post">
-                                                @csrf @method('put')
+                                            @foreach ($frac as $f)
+                                                <form action="{{ route('editarfracc', $f->id) }}" method="post">
+                                                    @csrf @method('put')
 
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlInput1">Fraccionamiento</label>
-                                                    <input readonly value="{{ $f->nombre }}" required name="nombre" type="text"
-                                                        class="form-control">
-                                                </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlInput1">Fraccionamiento</label>
+                                                        <input readonly value="{{ $f->nombre }}" required name="nombre"
+                                                            type="text" class="form-control">
+                                                    </div>
 
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlInput1">Direccion</label>
-                                                    <input value="{{ $f->direccion }}" required name="direccion" type="text"
-                                                        class="form-control">
-                                                </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlInput1">Direccion</label>
+                                                        <input value="{{ $f->direccion }}" required name="direccion"
+                                                            type="text" class="form-control">
+                                                    </div>
 
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlInput1">Rfc</label>
-                                                    <input value="{{ $f->rfc }}" required name="rfc" type="text"
-                                                        class="form-control">
-                                                </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlInput1">Rfc</label>
+                                                        <input value="{{ $f->rfc }}" required name="rfc" type="text"
+                                                            class="form-control">
+                                                    </div>
 
-                                                <center><button class="btn btn-primary">Actualizar informacion</button>
-                                                </center>
-                                            </form>
-                                        @endforeach
+                                                    <center><button class="btn btn-primary">Actualizar informacion</button>
+                                                    </center>
+                                                </form>
+                                            @endforeach
 
                                     </div>
                                 </div>
@@ -84,6 +84,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><strong>DESCARGAR PDF DETALLES DEL PC</strong></h5>
 
+                                        <a class="btn btn-warning" href='{{ route('compinfo') }}'>Descargar Info</a>
                                     </div>
                                 </div>
                             </div>

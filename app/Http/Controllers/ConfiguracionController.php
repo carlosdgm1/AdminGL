@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Correo;
 use App\Models\Arduino;
 use App\Models\Camaras;
-use App\Models\Correo;
-use App\Models\Fraccionamiento;
 use Illuminate\Http\Request;
+use Larinfo;
+use PDF;
+use App\Models\Fraccionamiento;
 use Illuminate\Support\Facades\Auth;
 
 class ConfiguracionController extends Controller
@@ -104,17 +106,18 @@ class ConfiguracionController extends Controller
 
     // INFORMACION GENERAL
 
-    public function indexGeneral(){
+    public function indexGeneral()
+    {
 
         $idf = Auth::user()->fraccionamiento;
 
-         $correo = Correo::all()->where('fraccionamiento', $idf);
-         $frac = Fraccionamiento::all()->where('id', $idf);
+        $correo = Correo::all()->where('fraccionamiento', $idf);
+        $frac = Fraccionamiento::all()->where('id', $idf);
 
-         return view('Configuracion.general', compact('correo', 'frac'));
-
+        return view('Configuracion.general', compact('correo', 'frac'));
     }
-    public function editarcorreo(Request $request, $id){
+    public function editarcorreo(Request $request, $id)
+    {
 
         $correo = Correo::find($id);
 
@@ -124,7 +127,8 @@ class ConfiguracionController extends Controller
         return redirect()->back();
     }
 
-    public function editarfracc(Request $request, $id){
+    public function editarfracc(Request $request, $id)
+    {
 
         $frac = Fraccionamiento::find($id);
 
@@ -134,5 +138,34 @@ class ConfiguracionController extends Controller
 
         return redirect()->back();
     }
-    
+
+    public function info()
+    {
+        $idf = Auth::user()->fraccionamiento;
+        $cameras = Camaras::where('fraccionamiento', $idf)->get();
+        $arduino = Arduino::where('fraccionamiento', $idf)->get();
+        $frac = Fraccionamiento::find($idf);
+        $larinfo = Larinfo::getInfo();
+        $server = $larinfo['server'];
+        $sw = $server['software'];
+        $hw = $server['hardware'];
+        $disk = $hw['disk'];
+        unset($hw['disk']);
+        $ram = $hw['ram'];
+        unset($hw['ram']);
+        unset($hw['swap']);
+        $data = [
+            'frac' => $frac,
+            'camaras' => $cameras,
+            'arduino' => $arduino,
+            'host' => $larinfo['host'],
+            'client' => $larinfo['client'],
+            'sw' => $sw,
+            'hw' => $hw,
+            'disk' => $disk,
+            'ram' => $ram,
+        ];
+        $pdf = PDF::loadView('pdf', $data);
+        return $pdf->download('informacion.pdf');
+    }
 }
