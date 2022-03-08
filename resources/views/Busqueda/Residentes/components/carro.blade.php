@@ -11,8 +11,8 @@
             </div>
             <div class="modal-body">
 
-                <form action="{{ route('updateR', $p->id) }}" method="POST">
-                    @csrf @method('put')
+                <form action="{{ route('crearVehiculo') }}" method="POST">
+                    @csrf
 
                     <input type="hidden" value="{{ $p->id }}" name="idr">
 
@@ -36,22 +36,29 @@
 
                 <h5>Listado de vehiculos</h5>
 
-                <div class="row align-items-start">
-                    @foreach ($vehiculo as $v)
-                        @if ($v->idr == $p->id)
-                            <div class="col">
-                               Placa: {{ $v->placa}}
-                            </div>
-                            <div class="col">
-                               Tarjeta: {{$v->tarjeta}}
-                            </div>
-                            <div class="col">
-                                One of three columns
-                            </div>
-                        @endif
-                    @endforeach
+                @foreach ($vehiculo as $v)
+                    @if ($v->idr == $p->id)
+                        <div class="row align-items-start">
 
-                </div>
+                            <div class="col">
+                                <p> <strong><i class="fas fa-angle-right    "></i></strong> Placa: {{ $v->placa }}
+                                </p>
+                            </div>
+                            <div class="col">
+                                Tarjeta: {{ $v->tarjeta }}
+                            </div>
+                            <div class="col">
+                                <form style="margin: 0" action="{{ route('deleteVisita', $v->id) }}" method="POST">
+                                    @csrf @method('delete')
+                                    <button class="btn btn-danger"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                    @endif
+                @endforeach
+
 
             </div>
             <div class="modal-footer">

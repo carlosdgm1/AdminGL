@@ -64,7 +64,7 @@ class BusquedaRController extends Controller
 
         Vehiculos::create([
 
-            'placa' => $request->placa,
+            'placa' => $request->placas,
             'tarjeta' => $request->tarjeta,
             'idr' => $request->idr,
 
@@ -72,6 +72,14 @@ class BusquedaRController extends Controller
 
         return redirect()->back();
 
-    } 
+    }
+    
+    public function deleteV($id)
+    {
+        $BR = Vehiculos::find($id);
+        $BR->delete();
+        return redirect()->back();
+    }
+
     
 }

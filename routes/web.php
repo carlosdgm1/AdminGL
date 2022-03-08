@@ -77,12 +77,17 @@ Route::get('/busqueda/residentes', [BusquedaRController::class, 'indexR'])->name
 Route::put('/busqueda/residentes/editar/{id}', [BusquedaRController::class, 'updateR'])->name('updateR');
 // eliminar residentes
 Route::delete('/busqueda/residentes/eliminar/{id}', [BusquedaRController::class, 'deleteR'])->name('deleteR');
+// crear vehiculo
+Route::post('/busqueda/residentes/crear/vehiculo', [BusquedaRController::class, 'crearVehiculo'])->name('crearVehiculo');
+// eliminar vehiculo
+Route::delete('/busqueda/vehiculo/eliminar/{id}', [BusquedaRController::class, 'deleteV'])->name('deleteVisita');
 
 // abrir ventana residentes
 // abrir ventana busqueda residentes
 Route::get('/busqueda/visitantes', [VisitantesController::class, 'indexV'])->name('indexV');
 // eliminar residentes
 Route::delete('/busqueda/visitantes/eliminar/{id}', [VisitantesController::class, 'deleteR'])->name('deleteV');
+
 
 
 // RUTAS CONFIGURACION ----------------------------------------------------------------

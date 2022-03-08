@@ -40,15 +40,19 @@
 
                             <div style="margin-top: 20px">
 
+                                <p><strong>Instrucciones de cerrado de visitas</strong> <br>
+                               1. Captura la imagend e la placa del visitante que saldra <br>
+                               2. Selecciona el visitante que salfra en la tabla <br>
+                               3. Gurada los datos de salida y abre la pluma</p>
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <div class="card" id="salida">
+                                        <div class="card text-center" id="salida">
                                             <div class="card-body">
-
+                                                
                                                 <video
                                                     style="background: black url(loader.gif) center no-repeat; margin:auto;"
-                                                    id="remoteVideo3" width="400" height="400" autoplay="" playsinline=""
+                                                    id="remoteVideo3" width="300" height="300" autoplay="" playsinline=""
                                                     muted=""></video>
 
                                                 <div class="card-body" style="text-align:center">
@@ -74,10 +78,6 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <canvas id="canvas4" width="400" height="400"></canvas>
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <br>
                                                 <br>
                                                 <br>
                                                 <br>
@@ -152,10 +152,12 @@
                             </div>
                             <br>
                             <div>
-                                <input type="submit" onclick="postexit()" value="GUARDAR DATOS" name="guardar"
-                                    class="btn btn-primary">
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" onclick="postexit()" value="GUARDAR DATOS" name="guardar"
+                                        class="btn btn-primary">
+                                </div>
                             </div>
-                            <select name="arduino" class="form-select" id="puerto">
+                            <select name="arduino" class="custom-select mt-3 mb-3" id="puerto" >
                                 @foreach ($arduino as $port)
                                     @if ($port->nombre !== null)
                                         <option value="{{ $port->id }}">{{ $port->nombre }}</option>
