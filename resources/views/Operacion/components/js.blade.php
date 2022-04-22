@@ -1,11 +1,9 @@
 <script type="text/javascript">
-    webrtcPlayer = new UnrealWebRTCPlayer("remoteVideo", "placa", "", "192.168.100.132", "5119", false, true, "tcp");
-
-    webrtcPlayer2 = new UnrealWebRTCPlayer("remoteVideo2", "frente", "", "192.168.100.132", "5119", false, true, "tcp");
-
+     webrtcPlayer = new UnrealWebRTCPlayer("remoteVideo", "placa", "", "192.168.1.65", "5119", false, true, "tcp");
+     webrtcPlayer2 = new UnrealWebRTCPlayer("remoteVideo2", "frente", "", "192.168.1.65", "5119", false, true, "tcp");
+    
     //Comment out next line not to start playing when webpage loads. Then user will need to click on Play button to play; you may want to use a video element with overlayed Play button - check out our SDK for sample webpages.
-    webrtcPlayer
-        .Play(); //Start playing automatically when webpage loads. Notice that video element has a "muted" attribute; this is video-only stream anyway. A muted attribute helps to overcome Chrome's autoplay policy, and is not always needed, as described in http://www.umediaserver.net/phpBB3/viewtopic.php?f=29&t=3578
+    webrtcPlayer.Play(); //Start playing automatically when webpage loads. Notice that video element has a "muted" attribute; this is video-only stream anyway. A muted attribute helps to overcome Chrome's autoplay policy, and is not always needed, as described in http://www.umediaserver.net/phpBB3/viewtopic.php?f=29&t=3578
     webrtcPlayer2.Play();
 </script>
 
@@ -37,15 +35,12 @@
     const video = document.getElementById('video');
     const video2 = document.getElementById('remoteVideo');
     const video3 = document.getElementById('remoteVideo2');
-    const video4 = document.getElementById('remoteVideo3');
     const canvas = document.getElementById('canvas');
     const canvas2 = document.getElementById('canvas2');
     const canvas3 = document.getElementById('canvas3');
-    const canvas4 = document.getElementById('canvas4');
     const snap = document.getElementById("snap");
     const snap2 = document.getElementById("snap2");
     const snap3 = document.getElementById("snap3");
-    const snap4 = document.getElementById("snap4");
     const constraints = {
         audio: true,
         video: {
@@ -95,14 +90,7 @@
         context3.filter = "brightness(" + br + "%) contrast(" + con + "%)"
         context3.drawImage(video3, 0, 0, 640, 480);
     });
-    var context4 = canvas4.getContext('2d');
-    snap4.addEventListener("click",
-        function() {
-            const br = document.getElementById('brightnesslicense2').value;
-            const con = document.getElementById('contrastlicense2').value;
-            context4.filter = "brightness(" + br + "%) contrast(" + con + "%)"
-            context4.drawImage(video4, 0, 0, 640, 480);
-        });
+    
 
     function brightw(e) {
         var val = e.value;
@@ -134,16 +122,6 @@
         video3.setAttribute("style", "filter: contrast(" + val + "%);");
     }
 
-    function contrastl2(e) {
-        var val = e.value;
-        video4.setAttribute("style", "filter: contrast(" + val + "%);");
-    }
-
-
-    function brightl2(e) {
-        var val = e.value;
-        video4.setAttribute("style", "filter: brightness(" + val + "%);");
-    }
 
     function open1() {
         console.log('abrir')
@@ -170,28 +148,6 @@
     }
 
 
-    function exitBtn(id) {
-        document.getElementById('hiddenid').value = id;
-    }
-
-
-    function postexit() {
-        var dataURL4 = canvas4.toDataURL("");
-        const id = document.getElementById('hiddenid').value
-        let data = new FormData();
-        data.append('salida_foto', dataURL4);
-        data.append('id', id);
-        fetch('/operacion/salida', {
-                method: "POST",
-                body: data,
-            })
-            .then(response => response)
-            .then(json => console.log(json))
-            .catch(err => console.log(err));
-
-
-    }
-
     function post() {
         const nombre = document.getElementsByName('nombre')[0].value;
         const telefono = document.getElementsByName('telefono')[0].value;
@@ -200,9 +156,9 @@
         const placa = document.getElementsByName('placa')[0].value;
         const motivo = document.getElementsByName('motivo')[0].value;
         const idr = document.getElementsByName('idr')[0].value;
-        const IN = document.getElementById('IN').checked;
-        const FC = document.getElementById('FC').checked;
-        const PL = document.getElementById('PL').checked;
+        // const IN = document.getElementById('IN').checked;
+        // const FC = document.getElementById('FC').checked;
+        // const PL = document.getElementById('PL').checked;
 
         var dataURL = canvas.toDataURL("");
         var dataURL2 = canvas2.toDataURL("");
@@ -218,9 +174,9 @@
         data.append('ine_foto', dataURL);
         data.append('placa_foto', dataURL2);
         data.append('cara_foto', dataURL3);
-        data.append('IN', IN);
-        data.append('PL', PL);
-        data.append('FC', FC);
+        // data.append('IN', IN);
+        // data.append('PL', PL);
+        // data.append('FC', FC);
 
 
         fetch('/operacion', {

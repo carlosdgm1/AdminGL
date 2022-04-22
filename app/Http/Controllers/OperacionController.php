@@ -11,11 +11,8 @@ use App\Models\Residentes;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use lepiaf\SerialPort\SerialPort;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Request;
-use lepiaf\SerialPort\Parser\SeparatorParser;
-use lepiaf\SerialPort\Configure\TTYConfigure;
 
 
 class OperacionController extends Controller
@@ -72,7 +69,7 @@ class OperacionController extends Controller
     public function openGate($id)
     {
         $open = Arduino::find($id);
-        $fd = dio_open('com1:', O_RDWR);
+        $fd = dio_open('com5:', O_RDWR);
         sleep(2);
         $wr = dio_write($fd, $open->abrir);
         sleep(2);
@@ -82,7 +79,7 @@ class OperacionController extends Controller
     public function closeGate($id)
     {
         $close = Arduino::find($id);
-        $fd = dio_open('com1:', O_RDWR);
+        $fd = dio_open('com5:', O_RDWR);
         sleep(2);
         $wr = dio_write($fd, $close->cerrar);
         sleep(2);
@@ -92,7 +89,6 @@ class OperacionController extends Controller
 
     public function store(Request $request)
     {
-        ddd($request);
         $image_64 = $request->ine_foto; //your base64 encoded data
         // $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
         $replace = substr($image_64, 0, strpos($image_64, ',') + 1);

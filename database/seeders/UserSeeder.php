@@ -18,14 +18,6 @@ class UserSeeder extends Seeder
 
     DB::table('users')->delete();
 
-    $user1 =  User::create([
-      'name' => 'goodlock',
-      'username' => 'goodlock',
-      'fraccionamiento' => '1',
-      'email' => 'S&T@admin.com',
-      'password' => bcrypt('4dmin123+'),
-    ])->assignRole('master');
-
     $user2 =  User::create([
       'name' => 'Administrador',
       'username' => 'Administrador',
